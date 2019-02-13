@@ -1,0 +1,29 @@
+version: '3.6'
+
+services:
+  mongo:
+    image: mongo
+    restart: always
+  header:
+    environment:
+    - 'PORT=80'
+    - 'NAME=header'
+    image: header:micro-front
+  footer:
+    environment:
+    - 'PORT=80'
+    - 'NAME=footer'
+    image: footer:micro-front
+  router:
+    environment:
+    - 'PORT=80'
+    - 'NAME=router'
+    - 'API_KEY=API'
+    image: router:micro-front
+    ports:
+      - '8080:80'
+      - "9229:9229"
+    command:
+      - node
+      - "--inspect-brk=0.0.0.0"
+      - "server.js" 
