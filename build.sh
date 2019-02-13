@@ -1,4 +1,4 @@
-cd router
+cd component-router
 ./build.sh
 cd ..
 
